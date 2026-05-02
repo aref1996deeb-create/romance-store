@@ -1,3 +1,109 @@
+<<<<<<< HEAD
+"use client";
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+
+export default function CartPage() {
+  const [cartItems, setCartItems] = useState([]);
+  const myPhoneNumber = "9665XXXXXXXX"; // ضعي رقم جوالك هنا مع مفتاح الدولة بدون أصفار
+
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCartItems(data);
+  }, []);
+
+  const clearCart = () => {
+    localStorage.removeItem('cart');
+    setCartItems([]);
+  };
+
+  // --- الدالة المسؤولة عن إرسال الطلب للواتساب ---
+  const handleCheckout = () => {
+    if (cartItems.length === 0) return;
+
+    let message = "مرحباً رومانس ستور، أود طلب المنتجات التالية:\n\n";
+    let total = 0;
+
+    cartItems.forEach((item: any, index) => {
+      const itemTotal = item.price * item.quantity;
+      total += itemTotal;
+      message += `${index + 1}- ${item.name}\n   الكمية: ${item.quantity}\n   السعر: ${itemTotal} ر.س\n\n`;
+    });
+
+    message += `------------------\n`;
+    message += `💰 الإجمالي النهائي: ${total} ر.س\n`;
+    message += `------------------\n`;
+    message += `أرجو تأكيد الطلب وتزويدي بطريقة الدفع.`;
+
+    // ترميز الرسالة لتعمل في الرابط
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${encodedMessage}`;
+
+    // فتح الواتساب في نافذة جديدة
+    window.open(whatsappUrl, '_blank');
+  };
+
+  return (
+    <main className="min-h-screen bg-[#0f1111] text-white p-6" dir="rtl">
+      <header className="flex justify-between items-center mb-10 bg-[#131921] p-6 rounded-2xl border border-white/5 shadow-lg">
+        <h1 className="text-2xl font-black text-[#febd69]">سلة المشتريات 🛒</h1>
+        <Link href="/" className="text-sm text-gray-400 bg-[#232f3e] px-4 py-2 rounded-lg hover:text-[#febd69]">العودة للمتجر</Link>
+      </header>
+
+      {cartItems.length === 0 ? (
+        <div className="text-center py-20">
+          <p className="text-gray-500 mb-6">السلة فارغة حالياً..</p>
+          <Link href="/" className="bg-[#febd69] text-black px-10 py-4 rounded-2xl font-black shadow-xl inline-block transition-transform hover:scale-105">ابدأ التسوق</Link>
+        </div>
+      ) : (
+        <div className="max-w-3xl mx-auto space-y-4">
+          {cartItems.map((item: any, index) => (
+            <div key={index} className="flex items-center justify-between bg-[#1a1c1c] p-4 rounded-2xl border border-white/5 shadow-md">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-[#232f3e] rounded-xl flex items-center justify-center text-3xl shadow-inner">👗</div>
+                <div>
+                  <h3 className="font-bold text-[#febd69] text-sm">{item.name}</h3>
+                  <p className="text-[10px] text-gray-500 mt-1">الكمية: {item.quantity}</p>
+                </div>
+              </div>
+              <div className="text-left">
+                <div className="font-black text-[#febd69]">{(item.price * item.quantity).toLocaleString('en-US')} ر.س</div>
+              </div>
+            </div>
+          ))}
+
+          <div className="pt-10 space-y-4">
+            <div className="bg-[#131921] p-6 rounded-2xl border border-white/5">
+              <div className="flex justify-between text-xl font-black">
+                <span>إجمالي الطلب:</span>
+                <span className="text-[#febd69]">
+                  {cartItems.reduce((acc: number, item: any) => acc + (item.price * item.quantity), 0).toLocaleString('en-US')} ر.س
+                </span>
+              </div>
+            </div>
+
+            {/* الآن الزر سيفتح الواتساب برسالة مرتبة */}
+            <button 
+              onClick={handleCheckout}
+              className="w-full bg-[#25D366] text-white py-5 rounded-2xl font-black text-lg shadow-[0_10px_20px_rgba(37,211,102,0.2)] hover:bg-[#1ebd5e] transition-all flex items-center justify-center gap-3"
+            >
+              <span>إتمام الطلب عبر واتساب</span>
+              <span className="text-2xl">💬</span>
+            </button>
+
+            <button onClick={clearCart} className="w-full text-gray-600 text-xs py-2 hover:text-red-500 transition-colors">
+              تفريغ السلة تماماً
+            </button>
+          </div>
+        </div>
+      )}
+      
+      <footer className="py-12 text-center text-gray-800 text-[10px] tracking-widest uppercase">
+        Romance Store — WhatsApp Checkout System
+      </footer>
+    </main>
+  );
+=======
 'use client'
 import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
@@ -169,4 +275,5 @@ export default function CartPage() {
       </div>
     </div>
   )
+>>>>>>> a0cbb82 (تجهيز ملفات المتجر ونظام الطلبات - بواسطة عارف ديب)
 }

@@ -1,3 +1,50 @@
+<<<<<<< HEAD
+"use client";
+import { use, useState } from "react"; 
+import Link from "next/link";
+import { products } from "../../data";
+import { useCart } from "../../context/CartContext";
+
+export default function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
+  const product = products.find(p => String(p.id) === String(resolvedParams.id));
+  const { addToCart } = useCart();
+  const [isAdded, setIsAdded] = useState(false);
+
+  if (!product) return <div className="p-20 text-center">القطعة غير موجودة</div>;
+
+  return (
+    <div className="min-h-screen bg-[#fffafa] py-10 px-4" dir="rtl">
+      <div className="max-w-5xl mx-auto bg-white p-8 rounded-[2.5rem] shadow-sm border border-pink-50">
+        <Link href="/" className="text-[#b07d62] mb-8 inline-block font-medium">← العودة للتشكيلة</Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <img src={product.image} alt={product.name} className="w-full rounded-3xl shadow-lg" />
+          <div className="flex flex-col justify-center">
+            <h1 className="text-4xl font-bold text-[#4a3f35] mb-4">{product.name}</h1>
+            <p className="text-3xl text-[#b07d62] font-black mb-8">{product.price} ر.س</p>
+            
+            <div className="space-y-4">
+              <button 
+                onClick={() => {
+                  addToCart(product);
+                  setIsAdded(true);
+                  setTimeout(() => setIsAdded(false), 2000);
+                }}
+                className="w-full bg-[#4a3f35] text-white py-5 rounded-2xl font-bold text-lg hover:bg-[#d4a373] transition-all"
+              >
+                {isAdded ? "✅ تمت الإضافة" : "🛒 إضافة للسلة"}
+              </button>
+              <Link href="/cart" className="w-full bg-white border-2 border-[#4a3f35] text-[#4a3f35] py-4 rounded-2xl font-bold text-center block">
+                📋 معاينة الفاتورة
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+=======
 "use client";
 import { products } from "@/app/data";
 import { useParams, useRouter } from "next/navigation";
@@ -134,3 +181,4 @@ export default function ProductPage() {
     </div>
   );
 }
+>>>>>>> a0cbb82 (تجهيز ملفات المتجر ونظام الطلبات - بواسطة عارف ديب)
