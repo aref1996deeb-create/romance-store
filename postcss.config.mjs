@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const config = {
   plugins: {
     tailwindcss: {},
@@ -5,4 +6,13 @@ const config = {
   },
 };
 
+=======
+const config = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+>>>>>>> a0cbb82 (تجهيز ملفات المتجر ونظام الطلبات - بواسطة عارف ديب)
 export default config;
