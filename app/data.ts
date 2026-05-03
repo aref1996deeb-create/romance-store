@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 export const products = [
   { id: "1", name: "عباية 'بلاك دايموند' ملكية", price: 650, image: "https://images.unsplash.com/photo-1583209814683-c023dd293cc6?auto=format&fit=crop&q=80&w=800" },
   { id: "2", name: "عباية الحرير الليلي", price: 890, image: "https://images.unsplash.com/photo-1563170351-be39c88e1c8c?auto=format&fit=crop&q=80&w=800" },
   { id: "3", name: "عباية 'برنسيس' الكلاسيكية", price: 520, image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=800" },
   { id: "4", name: "عباية الشيفون المطرزة", price: 740, image: "https://images.unsplash.com/photo-1585438159101-700994998992?auto=format&fit=crop&q=80&w=800" }
-=======
 export interface Product {
   id: string;
   name: string;
@@ -64,5 +62,4 @@ export const products: Product[] = [
       { user: "ريم خالد", comment: "فخامة تستحق كل ريال", rating: 5 }
     ]
   }
->>>>>>> a0cbb82 (تجهيز ملفات المتجر ونظام الطلبات - بواسطة عارف ديب)
-];
+]

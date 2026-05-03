@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -27,7 +26,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-=======
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -56,5 +54,4 @@ export default function RootLayout({
       </body>
     </html>
   );
->>>>>>> a0cbb82 (تجهيز ملفات المتجر ونظام الطلبات - بواسطة عارف ديب)
 }
